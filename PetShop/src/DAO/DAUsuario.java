@@ -22,7 +22,9 @@ public class DAUsuario {
     
     public DAUsuario() throws Exception {
         // criamos a conexão com o banco, para realizar o manuseio de dados
-        conn = DAOMysql.getConnection();              
+        conn = DAOMysql.getConnection();        
+        
+        
     }
     
     public void insereUsuario(String usuario, String senha, String cargo) throws Exception {
