@@ -16,14 +16,17 @@ public class DAOMysql {
     
     // Dados de conexao
     private static final String banco = "db_petshop_uninove";
-    private static final String urlBanco = "vps34630.publiccloud.com.br";
+    private static final String urlBanco = "localhost";
     private static final String porta = "3306";
     
     // Usuário e senha de acesso
-    private static final String usuario = "facudb";
-    private static final String senha = "Facudb@21";
+    private static final String usuario = "";
+    private static final String senha = "";
     
-    
+    /**
+     * Criamos a conexão com o banco de dados
+     * @return 
+     */
     public static Connection getConnection() throws Exception {
         Connection conn = null;
         
