@@ -6,6 +6,7 @@
 package telas;
 
 import DAO.DAOMysql;
+import RN.RNUsuario;
 import java.sql.Connection;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -117,17 +118,17 @@ public class frmLogin extends javax.swing.JFrame {
     }
     
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        Statement state = null;
-        Connection conn = null;
         
-        try{
-            conn = DAOMysql.getConnection();
-            state = conn.createStatement();
-            
-            state.executeUpdate("create table teste(id_usuario int not null);");
-        }
-        catch (Exception erro){
-            JOptionPane.showMessageDialog(null, "Erro durante a operação: \n" + erro.getMessage());
+        for (int idade = 0; idade < 15; idade++)
+        {
+            if (idade % 2 == 0)
+            {
+                String a = "par";
+            }
+            else 
+            {
+                String b = "impar";
+            }
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 

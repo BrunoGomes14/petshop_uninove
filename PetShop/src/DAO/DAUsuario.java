@@ -21,10 +21,9 @@ public class DAUsuario {
     private PreparedStatement psQuery;
     
     public DAUsuario() throws Exception {
-        // criamos a conexão com o banco, para realizar o manuseio de dados
-        conn = DAOMysql.getConnection();        
         
-        
+       // criamos a conexão com o banco, para realizar o manuseio de dados
+       conn = DAOMysql.getConnection();        
     }
     
     public void insereUsuario(String usuario, String senha, String cargo) throws Exception {
@@ -103,6 +102,7 @@ public class DAUsuario {
         
         // executamos o comando no banco, para efetivar os dados
         result = psQuery.executeQuery();
+    
         
         // se encontramos dados para ler
         while (result.next())
