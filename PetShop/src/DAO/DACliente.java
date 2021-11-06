@@ -111,4 +111,36 @@ public class DACliente {
         
         return arrCliente;
     }
+    
+    public Cliente retornaCliente(int idCliente) throws Exception {
+        ResultSet result;
+        Cliente cliente;
+        
+        // query a ser executada
+        String sQuery = "SELECT * FROM TB_CLIENTE WHERE ID_CLIENTE = ?";
+    
+        // criamos a query para executar no mysql
+        psQuery = conn.prepareStatement(sQuery);
+        
+        // Define o parametro
+        psQuery.setInt(0, idCliente);
+        
+        // executamos o comando no banco, para efetivar os dados
+        result = psQuery.executeQuery();
+        
+        // criamos um objeto para guardar os dados do cliente
+        cliente = new Cliente();
+        
+        // se encontramos dados para ler
+        if (result.next())
+        {
+            // recuperamos o resultado
+            cliente.setId(result.getInt("ID_CLIENTE"));
+            cliente.setCliente(result.getString("NM_CLIENTE"));
+            cliente.setDtNascimento(result.getDate("DT_NASCIMENTO"));
+            cliente.setDtCadastro(result.getDate("DT_CADASTRO"));
+        }
+        
+        return cliente;
+    }
 }
