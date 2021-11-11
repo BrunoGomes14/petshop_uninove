@@ -40,7 +40,6 @@ public class DAPet {
         psQuery.setDate(3, new java.sql.Date(pet.getDtNascimento().getTime()));       
         psQuery.setString(4, pet.getComplemento());
 
-        
         // executamos o comando no banco, para efetivar os dados
         psQuery.executeUpdate();
     }
