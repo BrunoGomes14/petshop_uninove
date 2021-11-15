@@ -34,10 +34,10 @@ public class DAProdutos{
         psQuery = conn.prepareStatement(sQuery);
         
         // preenchemos os parametros informados na query
-        psQuery.setString(0, produto);
-        psQuery.setString(1, descProduto);
-        psQuery.setDouble(2, preco);
-        psQuery.setInt(3, qtd);
+        psQuery.setString(1, produto);
+        psQuery.setString(3, descProduto);
+        psQuery.setDouble(4, preco);
+        psQuery.setInt(5, qtd);
         
         // executamos o comando no banco, para efetivar os dados
         psQuery.executeUpdate();
@@ -45,17 +45,17 @@ public class DAProdutos{
     
     public void editarCliente(int idProduto, String produto, String descProduto, double preco, int qtd) throws Exception {
         // query a ser executada
-        String sQuery = "UPDATE tb_produtos set nm_produto = ?, ds_produto = ?, nr_preco = ?, qtd_estoque = ?; where id_produto = ?";
+        String sQuery = "UPDATE tb_produtos set nm_produto = ?, ds_produto = ?, nr_preco = ?, qtd_estoque = ? where id_produto = ?";
     
         // criamos a query para executar no mysql
         psQuery = conn.prepareStatement(sQuery);
         
         // preenchemos os parametros informados na query
-        psQuery.setString(0, produto);
-        psQuery.setString(1, descProduto);
-        psQuery.setDouble(2, preco);
-        psQuery.setInt(3, qtd);
-        psQuery.setInt(4, idProduto);
+        psQuery.setString(1, produto);
+        psQuery.setString(2, descProduto);
+        psQuery.setDouble(3, preco);
+        psQuery.setInt(4, qtd);
+        psQuery.setInt(5, idProduto);
 
         // executamos o comando no banco, para efetivar os dados
         psQuery.executeUpdate();
@@ -71,7 +71,7 @@ public class DAProdutos{
         psQuery = conn.prepareStatement(sQuery);
         
         // preenchemos os parametros informados na query
-        psQuery.setString(0, produto);
+        psQuery.setString(1, produto);
         
         // executamos o comando no banco, para buscar os dados
         result = psQuery.executeQuery();
@@ -122,7 +122,7 @@ public class DAProdutos{
         psQuery = conn.prepareStatement(sQuery);
         
         // preenchemos os parametros informados na query
-        psQuery.setInt(0, idProduto);
+        psQuery.setInt(1, idProduto);
         
         // executamos o comando no banco, para efetivar os dados
         psQuery.executeUpdate();

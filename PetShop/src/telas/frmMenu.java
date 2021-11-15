@@ -5,16 +5,18 @@
  */
 package telas;
 
+import java.awt.event.WindowEvent;
+
 /**
  *
  * @author Bruno
  */
-public class frmMenu extends javax.swing.JFrame {
+public class FrmMenu extends javax.swing.JFrame {
 
     /**
      * Creates new form frmMenu
      */
-    public frmMenu() {
+    public FrmMenu() {
         initComponents();
     }
 
@@ -27,31 +29,167 @@ public class frmMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mnuListarPets = new javax.swing.JMenuItem();
+        mnuCadastrarPets = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        mnuListarClientes = new javax.swing.JMenuItem();
+        mnuCadastrarClientes = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        mnuTrocarUsuario = new javax.swing.JMenuItem();
+        mnuSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
-        jButton1.setText("Oi");
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
+        jLabel1.setText("Olá usuário!");
+
+        jMenu1.setText("Pet");
+
+        mnuListarPets.setText("Listar Todos");
+        mnuListarPets.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuListarPetsMouseClicked(evt);
+            }
+        });
+        mnuListarPets.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuListarPetsActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuListarPets);
+
+        mnuCadastrarPets.setText("Cadastrar");
+        mnuCadastrarPets.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuCadastrarPetsMouseClicked(evt);
+            }
+        });
+        mnuCadastrarPets.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuCadastrarPetsActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuCadastrarPets);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Cliente");
+
+        mnuListarClientes.setText("Listar Todos");
+        mnuListarClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuListarClientesMouseClicked(evt);
+            }
+        });
+        mnuListarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuListarClientesActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mnuListarClientes);
+
+        mnuCadastrarClientes.setText("Cadastrar");
+        mnuCadastrarClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuCadastrarClientesMouseClicked(evt);
+            }
+        });
+        mnuCadastrarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuCadastrarClientesActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mnuCadastrarClientes);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Sair");
+
+        mnuTrocarUsuario.setText("Trocar de usuário");
+        jMenu3.add(mnuTrocarUsuario);
+
+        mnuSair.setText("Sair");
+        mnuSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuSairActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnuSair);
+
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addComponent(jButton1)
-                .addContainerGap(178, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(79, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(72, 72, 72))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(231, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(44, 44, 44))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(jLabel1)
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void mnuListarPetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuListarPetsActionPerformed
+        new FrmPetLista().setVisible(true);
+    }//GEN-LAST:event_mnuListarPetsActionPerformed
+
+    private void mnuCadastrarPetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastrarPetsActionPerformed
+        new FrmPet().setVisible(true);
+    }//GEN-LAST:event_mnuCadastrarPetsActionPerformed
+
+    private void mnuListarPetsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuListarPetsMouseClicked
+        
+    }//GEN-LAST:event_mnuListarPetsMouseClicked
+
+    private void mnuCadastrarPetsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuCadastrarPetsMouseClicked
+        
+    }//GEN-LAST:event_mnuCadastrarPetsMouseClicked
+
+    private void mnuListarClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuListarClientesMouseClicked
+        
+    }//GEN-LAST:event_mnuListarClientesMouseClicked
+
+    private void mnuCadastrarClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuCadastrarClientesMouseClicked
+        
+    }//GEN-LAST:event_mnuCadastrarClientesMouseClicked
+
+    private void mnuListarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuListarClientesActionPerformed
+        new FrmClienteLista().setVisible(true);
+    }//GEN-LAST:event_mnuListarClientesActionPerformed
+
+    private void mnuCadastrarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastrarClientesActionPerformed
+        new FrmCliente().setVisible(true);
+    }//GEN-LAST:event_mnuCadastrarClientesActionPerformed
+
+    private void mnuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSairActionPerformed
+        dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+    }//GEN-LAST:event_mnuSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,25 +208,36 @@ public class frmMenu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmMenu().setVisible(true);
+                new FrmMenu().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem mnuCadastrarClientes;
+    private javax.swing.JMenuItem mnuCadastrarPets;
+    private javax.swing.JMenuItem mnuListarClientes;
+    private javax.swing.JMenuItem mnuListarPets;
+    private javax.swing.JMenuItem mnuSair;
+    private javax.swing.JMenuItem mnuTrocarUsuario;
     // End of variables declaration//GEN-END:variables
 }

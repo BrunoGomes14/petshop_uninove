@@ -35,9 +35,9 @@ public class DAUsuario {
         psQuery = conn.prepareStatement(sQuery);
         
         // preenchemos os parametros informados na query
-        psQuery.setString(0, usuario);
-        psQuery.setString(1, senha);
-        psQuery.setString(2, cargo);
+        psQuery.setString(1, usuario);
+        psQuery.setString(2, senha);
+        psQuery.setString(3, cargo);
         
         // executamos o comando no banco, para efetivar os dados
         psQuery.executeUpdate();
@@ -53,8 +53,8 @@ public class DAUsuario {
         psQuery = conn.prepareStatement(sQuery);
         
         // preenchemos os parametros informados na query
-        psQuery.setString(0, usuario);
-        psQuery.setString(1, senha);
+        psQuery.setString(1, usuario);
+        psQuery.setString(2, senha);
         
         // executamos o comando no banco, para efetivar os dados
         result = psQuery.executeQuery();
@@ -74,7 +74,7 @@ public class DAUsuario {
         psQuery = conn.prepareStatement(sQuery);
         
         // preenchemos os parametros informados na query
-        psQuery.setString(0, usuario);
+        psQuery.setString(1, usuario);
         
         // executamos o comando no banco, para efetivar os dados
         result = psQuery.executeQuery();
@@ -135,10 +135,10 @@ public class DAUsuario {
         psQuery = conn.prepareStatement(sQuery);
         
         // preenchemos os parametros informados na query
-        psQuery.setString(0, usuario.getUsuario());
-        psQuery.setString(1, usuario.getSenha());
-        psQuery.setString(2, usuario.getCargo());
-        psQuery.setInt(3, usuario.getId());
+        psQuery.setString(1, usuario.getUsuario());
+        psQuery.setString(2, usuario.getSenha());
+        psQuery.setString(3, usuario.getCargo());
+        psQuery.setInt(4, usuario.getId());
         
         // executamos o comando no banco, para efetivar os dados
         psQuery.executeUpdate();
@@ -155,7 +155,7 @@ public class DAUsuario {
         psQuery = conn.prepareStatement(sQuery);
         
         // preenchemos os parametros informados na query
-        psQuery.setInt(0, idUsuario);
+        psQuery.setInt(1, idUsuario);
         
         // executamos o comando no banco, para efetivar os dados
         psQuery.executeUpdate();

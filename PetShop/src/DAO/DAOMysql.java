@@ -15,13 +15,13 @@ import java.sql.DriverManager;
 public class DAOMysql {
     
     // Dados de conexao
-    private static final String banco = "db_petshop_uninove";
+    private static final String banco = "db_petshop";
     private static final String urlBanco = "localhost";
     private static final String porta = "3306";
     
     // Usuário e senha de acesso
-    private static final String usuario = "";
-    private static final String senha = "";
+    private static final String usuario = "root";
+    private static final String senha = "1234";
     
     /**
      * Criamos a conexão com o banco de dados

@@ -34,11 +34,11 @@ public class DAPet {
         psQuery = conn.prepareStatement(sQuery);
         
         // preenchemos os parametros informados na query
-        psQuery.setString(0, pet.getNome());
-        psQuery.setString(1, pet.getRga());
-        psQuery.setInt(2, pet.getResponsavel().getId());
-        psQuery.setDate(3, new java.sql.Date(pet.getDtNascimento().getTime()));       
-        psQuery.setString(4, pet.getComplemento());
+        psQuery.setString(1, pet.getNome());
+        psQuery.setString(2, pet.getRga());
+        psQuery.setInt(3, pet.getResponsavel().getId());
+        psQuery.setDate(4, new java.sql.Date(pet.getDtNascimento().getTime()));       
+        psQuery.setString(5, pet.getComplemento());
 
         // executamos o comando no banco, para efetivar os dados
         psQuery.executeUpdate();
@@ -46,16 +46,17 @@ public class DAPet {
     
     public void editarPet(Pet pet) throws Exception {
         // query a ser executada
-        String sQuery = "UPDATE tb_produtos set nm_pet = ?, ds_rga = ?, dt_nascimento = ?, ds_complemento = ?; where id_pet = ?";
+        String sQuery = "UPDATE tb_pet set nm_pet = ?, ds_rga = ?, dt_nascimento = ?, ds_complemento = ? where id_pet = ?";
     
         // criamos a query para executar no mysql
         psQuery = conn.prepareStatement(sQuery);
         
         // preenchemos os parametros informados na query
-        psQuery.setString(0, pet.getNome());
-        psQuery.setString(1, pet.getRga());
-        psQuery.setDate(2, new java.sql.Date(pet.getDtNascimento().getTime()));
-        psQuery.setString(3, pet.getComplemento());
+        psQuery.setString(1, pet.getNome());
+        psQuery.setString(2, pet.getRga());
+        psQuery.setDate(3, new java.sql.Date(pet.getDtNascimento().getTime()));
+        psQuery.setString(4, pet.getComplemento());
+        psQuery.setInt(5, pet.getId());
 
         // executamos o comando no banco, para efetivar os dados
         psQuery.executeUpdate();
@@ -72,13 +73,18 @@ public class DAPet {
         
         if (idResponsavel > 0)
         {
-            sQuery += " WHERE ID_RESPONSAVEL = ?";
-            
-            psQuery.setInt(0, idResponsavel);
+            sQuery += " WHERE ID_RESPONSAVEL = ? AND FL_ATIVO = 1";
+        }
+        else 
+        {
+            sQuery += " WHERE FL_ATIVO = 1";
         }
     
         // criamos a query para executar no mysql
         psQuery = conn.prepareStatement(sQuery);
+        
+        if (idResponsavel > 0)
+            psQuery.setInt(1, idResponsavel);
         
         // executamos o comando no banco, para efetivar os dados
         result = psQuery.executeQuery();
@@ -104,23 +110,63 @@ public class DAPet {
             arrPet.add(pet);
         }
         
+        conn.close();
+        
         return arrPet;
     }
     
-    public void apagarProduto(int idProduto) throws Exception {
-        String sQuery;
+    public Pet retornaPet(int idPet) throws Exception {
+        ResultSet result;
+        Pet pet = null;
+        DACliente daCliente;
         
         // query a ser executada
-        sQuery = " DELETE FROM TB_PRODUTOS " +
-                 " WHERE ID_PRODUTO = ? ";
+        String sQuery = "SELECT * FROM TB_PET WHERE ID_PET = ?";
+    
+        // criamos a query para executar no mysql
+        psQuery = conn.prepareStatement(sQuery);
+        
+        psQuery.setInt(1, idPet);
+        
+        // executamos o comando no banco, para efetivar os dados
+        result = psQuery.executeQuery();
+        
+        pet = new Pet();
+        
+        // se encontramos dados para ler
+        if (result.next())
+        {
+            // criamos um objeto com os dados do usuário obtido nesta linha
+            pet.setId(result.getInt("id_pet"));
+            pet.setNome(result.getString("nm_pet"));
+            pet.setComplemento(result.getString("ds_complemento"));
+            pet.setDtNascimento(result.getDate("dt_nascimento"));
+            pet.setRga(result.getString("ds_rga"));
+            
+            // instanciamos o objeto que busca no banco os dados do cliente
+            daCliente = new DACliente();
+                    
+            // buscamos os dados do dono do pet
+            pet.setResponsavel(daCliente.retornaCliente(result.getInt("id_responsavel")));
+        }
+        
+        conn.close();
+        
+        return pet;
+    }
+    
+    public void excluirPet(int idPet) throws Exception {
+        // query a ser executada
+        String sQuery = "UPDATE TB_PET SET FL_ATIVO = 0 WHERE ID_PET = ?";
     
         // criamos a query para executar no mysql
         psQuery = conn.prepareStatement(sQuery);
         
         // preenchemos os parametros informados na query
-        psQuery.setInt(0, idProduto);
-        
+        psQuery.setInt(1, idPet);
+
         // executamos o comando no banco, para efetivar os dados
         psQuery.executeUpdate();
     }
+           
 }

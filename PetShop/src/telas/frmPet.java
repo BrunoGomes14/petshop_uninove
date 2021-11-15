@@ -6,20 +6,32 @@
 package telas;
 
 import DAO.DAPet;
+import Models.Cliente;
 import Models.Pet;
+import RN.RNCliente;
+import RN.RNPets;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import Util.Util;
+import java.util.ArrayList;
 
 /**
  *
  * @author Bruno
  */
-public class frmPet extends javax.swing.JFrame {
+public class FrmPet extends javax.swing.JFrame {
+
+    public int idPet;
+    public int idResponsavel = 0;
+    public boolean bRespAbertura = false;
+    public ArrayList<Cliente> arrClientes = null;
 
     /**
      * Creates new form frmPet
      */
-    public frmPet() {
+    public FrmPet() {
         initComponents();
     }
 
@@ -35,8 +47,24 @@ public class frmPet extends javax.swing.JFrame {
         txtNomePet = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        txtRGA = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtDtNascimento = new javax.swing.JFormattedTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtComplemento = new javax.swing.JTextArea();
+        jButton2 = new javax.swing.JButton();
+        cboResponsavel = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Pet ");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         txtNomePet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,53 +81,126 @@ public class frmPet extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("RGA");
+
+        jLabel3.setText("Data de nascimento");
+
+        try {
+            txtDtNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel4.setText("Complemento");
+
+        txtComplemento.setColumns(20);
+        txtComplemento.setRows(5);
+        jScrollPane1.setViewportView(txtComplemento);
+
+        jButton2.setText("Voltar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Responsável");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNomePet, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(264, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(23, 23, 23))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtRGA, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDtNascimento, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txtNomePet)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 1, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel5))
+                                .addGap(39, 39, 39))
+                            .addComponent(cboResponsavel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(76, 76, 76)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jLabel4)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNomePet, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cboResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNomePet, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtRGA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Pet pet = new Pet();
-        
-        pet.setNome(txtNomePet.getText());
-         
-        try {
-            DAPet daPet = new DAPet();
-            daPet.inserirPet(pet);
-            
-        } catch (Exception ex) {
-            Logger.getLogger(frmPet.class.getName()).log(Level.SEVERE, null, ex);
+        if (idPet > 0) {
+            editarPet();
+        } else {
+            salvarNovoPet();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtNomePetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomePetActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomePetActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setResizable(false);
+
+        if (idPet > 0) {
+            preenchePet();
+        }
+        
+        preencheClientes();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,27 +219,117 @@ public class frmPet extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmPet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmPet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmPet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmPet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmPet().setVisible(true);
+                new FrmPet().setVisible(true);
             }
         });
     }
 
+    public void salvarNovoPet() {
+        Pet pet = new Pet();
+        SimpleDateFormat dtFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            pet.setNome(txtNomePet.getText());
+            pet.setComplemento(txtComplemento.getText());
+            pet.setRga(txtRGA.getText());
+            pet.setResponsavel(new Cliente(arrClientes.get(cboResponsavel.getSelectedIndex() - 1).getId()));
+
+            if (txtDtNascimento.getText().trim().length() == 10) {
+                pet.setDtNascimento(dtFormat.parse(txtDtNascimento.getText()));
+            }
+
+            new RNPets().inserirPet(pet);
+
+            JOptionPane.showMessageDialog(null, "Pet cadastrado com sucesso!");
+            this.setVisible(false);
+
+            if (bRespAbertura) {
+                FrmCliente telaCliente = new FrmCliente();
+                telaCliente.idCliente = idResponsavel;
+                telaCliente.setVisible(true);
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro Inesperado!\n\n" + erro.getMessage());
+
+        }
+    }
+
+    public void editarPet() {
+        Pet pet = new Pet();
+
+        try {
+            pet.setId(idPet);
+            pet.setNome(txtNomePet.getText());
+            pet.setComplemento(txtComplemento.getText());
+            pet.setRga(txtRGA.getText());
+            pet.setResponsavel(new Cliente(arrClientes.get(cboResponsavel.getSelectedIndex() - 1).getId()));
+
+            if (Util.dataValida(txtDtNascimento.getText())) {
+                pet.setDtNascimento(Util.converteData(txtDtNascimento.getText()));
+            }
+
+            new RNPets().editarPet(pet);
+
+            JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!");
+        } catch (Exception err) {
+
+        }
+    }
+
+    public void preenchePet() {
+        Pet pet = new RNPets().retornaPets(idPet);
+
+        txtNomePet.setText(pet.getNome());
+        txtDtNascimento.setText(new SimpleDateFormat("dd/MM/yyyy").format(pet.getDtNascimento()));
+        txtRGA.setText(pet.getRga());
+        txtComplemento.setText(pet.getComplemento());
+    }
+
+    public void preencheClientes() {
+        int posicaoAux = 0;
+        arrClientes = new RNCliente().listarTodosUsuarios("");
+
+        cboResponsavel.addItem("");
+
+        for (Cliente clienteItem : arrClientes) {
+            cboResponsavel.addItem(clienteItem.getCliente());
+
+            if (idResponsavel == clienteItem.getId()) {
+                cboResponsavel.setSelectedIndex(posicaoAux + 1);
+                cboResponsavel.enable(false);
+                txtNomePet.requestFocus();
+            }
+
+            posicaoAux++;
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cboResponsavel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea txtComplemento;
+    private javax.swing.JFormattedTextField txtDtNascimento;
     private javax.swing.JTextField txtNomePet;
+    private javax.swing.JTextField txtRGA;
     // End of variables declaration//GEN-END:variables
 }

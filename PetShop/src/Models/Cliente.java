@@ -18,6 +18,17 @@ public class Cliente {
     String cpf = "";
     Date dtNascimento;
     Date dtCadastro;
+    String nrTelefone;
+
+
+    
+    public Cliente(int id){
+        this.id = id;
+    }
+    
+    public Cliente(){
+       
+    }
 
     public int getId() {
         return id;
@@ -57,5 +68,13 @@ public class Cliente {
 
     public void setDtCadastro(Date dtCadastro) {
         this.dtCadastro = dtCadastro;
+    }
+    
+    public String getNrTelefone() {
+        return nrTelefone;
+    }
+
+    public void setNrTelefone(String nrTelefone) {
+        this.nrTelefone = nrTelefone;
     }
 }

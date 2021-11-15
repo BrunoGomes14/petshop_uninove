@@ -36,11 +36,11 @@ public class DAServico {
         psQuery = conn.prepareStatement(sQuery);
         
         // preenchemos os parametros informados na query
-        psQuery.setString(0, servico.getNome());
-        psQuery.setString(1, servico.getDescricao());
-        psQuery.setDouble(2, servico.getTempoMedio());
-        psQuery.setDouble(3, servico.getPreco());
-        psQuery.setDate(4, new java.sql.Date(servico.getDtCadastro().getTime()));
+        psQuery.setString(1, servico.getNome());
+        psQuery.setString(2, servico.getDescricao());
+        psQuery.setDouble(3, servico.getTempoMedio());
+        psQuery.setDouble(4, servico.getPreco());
+        psQuery.setDate(5, new java.sql.Date(servico.getDtCadastro().getTime()));
         
         // executamos o comando no banco, para efetivar os dados
         psQuery.executeUpdate();
@@ -48,17 +48,17 @@ public class DAServico {
     
     public void editarServico(Servico servico) throws Exception {
         // query a ser executada
-        String sQuery = "UPDATE tb_servicos set nm_servico = ?, ds_servico = ?, nr_tempo_medio_min = ?, nr_preco = ?; where id_servicos = ?";
+        String sQuery = "UPDATE tb_servicos set nm_servico = ?, ds_servico = ?, nr_tempo_medio_min = ?, nr_preco = ? where id_servicos = ?";
     
         // criamos a query para executar no mysql
         psQuery = conn.prepareStatement(sQuery);
         
         // preenchemos os parametros informados na query
-        psQuery.setString(0, servico.getNome());
-        psQuery.setString(1, servico.getDescricao());
-        psQuery.setDouble(2, servico.getTempoMedio());
-        psQuery.setDouble(3, servico.getPreco());
-        psQuery.setInt(4, servico.getId());
+        psQuery.setString(1, servico.getNome());
+        psQuery.setString(2, servico.getDescricao());
+        psQuery.setDouble(3, servico.getTempoMedio());
+        psQuery.setDouble(4, servico.getPreco());
+        psQuery.setInt(5, servico.getId());
         
         // executamos o comando no banco, para efetivar os dados
         psQuery.executeUpdate();
@@ -141,10 +141,10 @@ public class DAServico {
         psQuery = conn.prepareStatement(sQuery);
         
         // Define o parametro
-        psQuery.setInt(0, idServico);
-        psQuery.setInt(1, idUsuario);
-        psQuery.setInt(2, idPet);
-        psQuery.setDate(3, new java.sql.Date(dtCadastro.getTime()));
+        psQuery.setInt(1, idServico);
+        psQuery.setInt(2, idUsuario);
+        psQuery.setInt(3, idPet);
+        psQuery.setDate(4, new java.sql.Date(dtCadastro.getTime()));
         
         // executamos o comando no banco, para efetivar os dados
         result = psQuery.executeQuery();
@@ -169,7 +169,7 @@ public class DAServico {
         
         if (idCliente > 0){ 
             // Define o parametro
-            psQuery.setInt(0, idCliente);
+            psQuery.setInt(1, idCliente);
         }
         
         // executamos o comando no banco, para efetivar os dados
