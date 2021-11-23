@@ -22,10 +22,15 @@ import javax.swing.JOptionPane;
 public class RNCliente {
 
     DACliente daCliente = null;
+    
 
     public boolean inserirCliente(String cliente, String cpf, Date dtNascimento, String nrTelefone) {
         boolean bResultado = true;
 
+        short a = 5;
+        
+        Integer.parseInt("2021");
+        
         try {
             long diferencaTempo;
             long qtdAnos = 0;

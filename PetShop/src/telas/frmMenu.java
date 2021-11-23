@@ -42,7 +42,7 @@ public class FrmMenu extends javax.swing.JFrame {
         mnuSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Menu");
+        setTitle("Menu Inicial");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -50,9 +50,9 @@ public class FrmMenu extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
-        jLabel1.setText("Olá usuário!");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resouces/ifollow.gif"))); // NOI18N
 
-        jMenu1.setText("Pet");
+        jMenu1.setText("Pets");
 
         mnuListarPets.setText("Listar Todos");
         mnuListarPets.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -82,7 +82,7 @@ public class FrmMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Cliente");
+        jMenu2.setText("Clientes");
 
         mnuListarClientes.setText("Listar Todos");
         mnuListarClientes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -133,17 +133,11 @@ public class FrmMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(79, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(72, 72, 72))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(jLabel1)
-                .addContainerGap(151, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

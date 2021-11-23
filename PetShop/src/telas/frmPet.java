@@ -309,7 +309,7 @@ public class FrmPet extends javax.swing.JFrame {
 
             if (idResponsavel == clienteItem.getId()) {
                 cboResponsavel.setSelectedIndex(posicaoAux + 1);
-                cboResponsavel.enable(false);
+                cboResponsavel.setEnabled(false);
                 txtNomePet.requestFocus();
             }
 

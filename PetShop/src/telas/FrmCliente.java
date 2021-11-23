@@ -254,6 +254,7 @@ public class FrmCliente extends javax.swing.JFrame {
         cliente.setCliente(txtNome.getText().trim());
         cliente.setCpf(txtCPF.getText());
         cliente.setNrTelefone(txtTelefone.getText());
+       
 
         if (Util.dataValida(txtDtNascimento.getText())) {
             cliente.setDtNascimento(Util.converteData(txtDtNascimento.getText()));
