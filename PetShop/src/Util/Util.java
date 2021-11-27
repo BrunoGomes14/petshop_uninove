@@ -17,6 +17,10 @@ import java.util.Calendar;
  */
 public class Util {
     
+    public final static String TIPO_USUARIO_ATENDENTE = "atend";
+    public final static String TIPO_USUARIO_ADMIN = "adm";
+    public final static String TIPO_USUARIO_ESTOQUISTA = "estoq";
+    
     private static SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
     
     public static boolean dataValida(String data){

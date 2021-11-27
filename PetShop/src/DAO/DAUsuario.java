@@ -47,7 +47,7 @@ public class DAUsuario {
         ResultSet result;
         
         // query a ser executada
-        String sQuery = "SELECT * FROM TB_USUARIOS WHERE DS_USUARIO = ? AND SENHA = ?";
+        String sQuery = "SELECT * FROM TB_USUARIOS WHERE DS_USUARIO = ? AND DS_SENHA = ?";
     
         // criamos a query para executar no mysql
         psQuery = conn.prepareStatement(sQuery);
@@ -95,7 +95,7 @@ public class DAUsuario {
         ArrayList<Usuario> arrUsuarios = new ArrayList<>(); 
         
         // query a ser executada
-        String sQuery = "SELECT * FROM TB_USUARIOS WHERE DS_CARGO != ADM";
+        String sQuery = "SELECT * FROM TB_USUARIOS WHERE DS_CARGO != \"ADM\"";
     
         // criamos a query para executar no mysql
         psQuery = conn.prepareStatement(sQuery);
