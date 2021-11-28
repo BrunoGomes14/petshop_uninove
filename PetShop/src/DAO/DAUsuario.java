@@ -29,13 +29,13 @@ public class DAUsuario {
     public void insereUsuario(String usuario, String senha, String cargo) throws Exception {
       
         // query a ser executada
-        String sQuery = "INSERT INTO TB_USUARIOS(ds_usuario, ds_senha, ds_cargo) values (?, ?, ?)";
+        String sQuery = "INSERT INTO TB_USUARIOS(ds_usuario, ds_senha, ds_cargo, nr_cargo) values (?, ?, ?, 1)";
     
         // criamos a query para executar no mysql
         psQuery = conn.prepareStatement(sQuery);
         
         // preenchemos os parametros informados na query
-        psQuery.setString(1, usuario);
+        psQuery.setString(1, usuario.trim());
         psQuery.setString(2, senha);
         psQuery.setString(3, cargo);
         

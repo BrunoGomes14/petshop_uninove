@@ -19,8 +19,9 @@ public class RNUsuario {
 
     DAUsuario daUsuario = null;
 
-    public void inserirUsuario(String usuario, String senha, String cargo) {
-
+    public boolean inserirUsuario(String usuario, String senha, String confSenha, String cargo) {
+        boolean bResultado = false;
+        
         try {
             if (usuario.length() == 0) {
                 throw new IllegalArgumentException("O nome do usuário é obrigatório!");
@@ -29,17 +30,24 @@ public class RNUsuario {
             if (senha.length() == 0 || senha.length() < 8) {
                 throw new IllegalArgumentException("A senha do usuário precisa possuir no mínimo 8 caracteres!");
             }
+            
+            if (!senha.equals(confSenha)){
+                 throw new IllegalArgumentException("A senha não conferem!");
+            }
 
             // criamos o objeto que manuseia o banco de dados
             daUsuario = new DAUsuario();
 
             // verificamos se o usuário já existe
-            if (daUsuario.obtemCargoUsuario(usuario).equals("")) {
+            if (!daUsuario.obtemCargoUsuario(usuario).equals("")) {
                 throw new IllegalArgumentException("Este usuário já existe!");
             }
 
             // adiciona o usuário ao banco de dados
             daUsuario.insereUsuario(usuario, senha, cargo);
+            bResultado = true;
+            
+            JOptionPane.showMessageDialog(null, "Usuário inserido com sucesso!");
         } catch (IllegalArgumentException erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (Exception erro) {
@@ -48,6 +56,8 @@ public class RNUsuario {
             // fechamos a conexão com o banco de dados
             DAOMysql.disposeConnection(daUsuario.conn);
         }
+        
+        return bResultado;
     }
 
     public boolean verificaUsuario(String usuario, String senha) {

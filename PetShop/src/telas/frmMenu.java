@@ -29,6 +29,7 @@ public class FrmMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -37,6 +38,9 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         mnuListarClientes = new javax.swing.JMenuItem();
         mnuCadastrarClientes = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        mnuCadastroServico = new javax.swing.JMenuItem();
+        mnuListaServico = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         mnuTrocarUsuario = new javax.swing.JMenuItem();
         mnuSair = new javax.swing.JMenuItem();
@@ -49,8 +53,20 @@ public class FrmMenu extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resouces/ifollow.gif"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         jMenu1.setText("Pets");
 
@@ -112,6 +128,26 @@ public class FrmMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu4.setText("Serviços");
+
+        mnuCadastroServico.setText("Cadastrar");
+        mnuCadastroServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuCadastroServicoActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnuCadastroServico);
+
+        mnuListaServico.setText("Lista de serviços");
+        mnuListaServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuListaServicoActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnuListaServico);
+
+        jMenuBar1.add(jMenu4);
+
         jMenu3.setText("Sair");
 
         mnuTrocarUsuario.setText("Trocar de usuário");
@@ -133,11 +169,11 @@ public class FrmMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -185,6 +221,14 @@ public class FrmMenu extends javax.swing.JFrame {
         dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_mnuSairActionPerformed
 
+    private void mnuCadastroServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroServicoActionPerformed
+        new FrmServico().setVisible(true);
+    }//GEN-LAST:event_mnuCadastroServicoActionPerformed
+
+    private void mnuListaServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuListaServicoActionPerformed
+        new FrmServicoLista().setVisible(true);
+    }//GEN-LAST:event_mnuListaServicoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -226,9 +270,13 @@ public class FrmMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem mnuCadastrarClientes;
     private javax.swing.JMenuItem mnuCadastrarPets;
+    private javax.swing.JMenuItem mnuCadastroServico;
+    private javax.swing.JMenuItem mnuListaServico;
     private javax.swing.JMenuItem mnuListarClientes;
     private javax.swing.JMenuItem mnuListarPets;
     private javax.swing.JMenuItem mnuSair;
