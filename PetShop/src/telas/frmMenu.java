@@ -41,6 +41,8 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         mnuCadastroServico = new javax.swing.JMenuItem();
         mnuListaServico = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        mnuCadastroProduto = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         mnuTrocarUsuario = new javax.swing.JMenuItem();
         mnuSair = new javax.swing.JMenuItem();
@@ -148,6 +150,18 @@ public class FrmMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
+        jMenu5.setText("Produtos");
+
+        mnuCadastroProduto.setText("CadastrarProduto");
+        mnuCadastroProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuCadastroProdutoActionPerformed(evt);
+            }
+        });
+        jMenu5.add(mnuCadastroProduto);
+
+        jMenuBar1.add(jMenu5);
+
         jMenu3.setText("Sair");
 
         mnuTrocarUsuario.setText("Trocar de usuário");
@@ -229,6 +243,10 @@ public class FrmMenu extends javax.swing.JFrame {
         new FrmServicoLista().setVisible(true);
     }//GEN-LAST:event_mnuListaServicoActionPerformed
 
+    private void mnuCadastroProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroProdutoActionPerformed
+       new FrmProduto().setVisible(true);
+    }//GEN-LAST:event_mnuCadastroProdutoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -271,10 +289,12 @@ public class FrmMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem mnuCadastrarClientes;
     private javax.swing.JMenuItem mnuCadastrarPets;
+    private javax.swing.JMenuItem mnuCadastroProduto;
     private javax.swing.JMenuItem mnuCadastroServico;
     private javax.swing.JMenuItem mnuListaServico;
     private javax.swing.JMenuItem mnuListarClientes;

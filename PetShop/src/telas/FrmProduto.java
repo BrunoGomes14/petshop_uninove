@@ -16,6 +16,10 @@ public class FrmProduto extends javax.swing.JFrame {
      */
     public FrmProduto() {
         initComponents();
+      
+        pack();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
