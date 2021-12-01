@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Bruno/Desktop/pasta/facul/petshop_uninove/PetShop/src/telas/FrmProduto.java</file>
             <file>file:/C:/Users/Bruno/Desktop/pasta/facul/petshop_uninove/PetShop/src/telas/FrmCadastroUsuario.java</file>
             <file>file:/C:/Users/Bruno/Desktop/pasta/facul/petshop_uninove/PetShop/src/DAO/DAServico.java</file>
@@ -20,6 +21,14 @@
             <file>file:/C:/Users/Bruno/Desktop/pasta/facul/petshop_uninove/PetShop/src/telas/FrmServicoRegistro.java</file>
             <file>file:/C:/Users/Bruno/Desktop/pasta/facul/petshop_uninove/PetShop/src/Models/Servico.java</file>
             <file>file:/C:/Users/Bruno/Desktop/pasta/facul/petshop_uninove/PetShop/src/telas/FrmServico.java</file>
+=======
+            <file>file:/C:/Users/beatriz/Documents/NetBeansProjects/petshop%202/petshop_uninove/PetShop/src/Util/Util.java</file>
+            <file>file:/C:/Users/beatriz/Documents/NetBeansProjects/petshop%202/petshop_uninove/PetShop/src/DAO/DAOMysql.java</file>
+            <file>file:/C:/Users/beatriz/Documents/NetBeansProjects/petshop%202/petshop_uninove/PetShop/src/telas/FrmServico.java</file>
+            <file>file:/C:/Users/beatriz/Documents/NetBeansProjects/petshop%202/petshop_uninove/PetShop/src/telas/frmMenu.java</file>
+            <file>file:/C:/Users/beatriz/Documents/NetBeansProjects/petshop%202/petshop_uninove/PetShop/src/telas/FrmCliente.java</file>
+            <file>file:/C:/Users/beatriz/Documents/NetBeansProjects/petshop%202/petshop_uninove/PetShop/src/telas/FrmProduto.java</file>
+>>>>>>> f324625a2495d5a22da0b597a9fcec34a4976f65
         </group>
     </open-files>
 </project-private>
