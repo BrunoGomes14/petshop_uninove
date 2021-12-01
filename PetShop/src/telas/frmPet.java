@@ -5,14 +5,11 @@
  */
 package telas;
 
-import DAO.DAPet;
 import Models.Cliente;
 import Models.Pet;
 import RN.RNCliente;
 import RN.RNPets;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import Util.Util;
 import java.util.ArrayList;

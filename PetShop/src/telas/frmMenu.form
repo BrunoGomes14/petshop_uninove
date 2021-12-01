@@ -59,6 +59,14 @@
             <Property name="text" type="java.lang.String" value="Servi&#xe7;os"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuRegistrarServico">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Registrar presta&#xe7;&#xe3;o servi&#xe7;o"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuRegistrarServicoActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuCadastroServico">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cadastrar"/>

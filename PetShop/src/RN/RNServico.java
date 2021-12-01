@@ -10,6 +10,7 @@ import DAO.DAPet;
 import DAO.DAServico;
 import Models.Pet;
 import Models.Servico;
+import Models.ServicoHistorico;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -112,6 +113,17 @@ public class RNServico {
 
         try{
             return new DAServico().listarTodosServicos();
+        }
+        catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro Inesperado!\n\n" + erro.getMessage());
+        }
+        
+        return new ArrayList();
+    }
+    
+    public ArrayList<ServicoHistorico> retornaHistoricoServicos(int idCliente){
+         try{
+            return new DAServico().retornaHistoricoServicos(idCliente);
         }
         catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro Inesperado!\n\n" + erro.getMessage());

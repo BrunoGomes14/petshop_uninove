@@ -39,6 +39,7 @@ public class FrmMenu extends javax.swing.JFrame {
         mnuListarClientes = new javax.swing.JMenuItem();
         mnuCadastrarClientes = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        mnuRegistrarServico = new javax.swing.JMenuItem();
         mnuCadastroServico = new javax.swing.JMenuItem();
         mnuListaServico = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -131,6 +132,14 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu4.setText("Serviços");
+
+        mnuRegistrarServico.setText("Registrar prestação serviço");
+        mnuRegistrarServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuRegistrarServicoActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnuRegistrarServico);
 
         mnuCadastroServico.setText("Cadastrar");
         mnuCadastroServico.addActionListener(new java.awt.event.ActionListener() {
@@ -247,6 +256,10 @@ public class FrmMenu extends javax.swing.JFrame {
        new FrmProduto().setVisible(true);
     }//GEN-LAST:event_mnuCadastroProdutoActionPerformed
 
+    private void mnuRegistrarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRegistrarServicoActionPerformed
+        new FrmServicoRegistro().setVisible(true);
+    }//GEN-LAST:event_mnuRegistrarServicoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -274,6 +287,8 @@ public class FrmMenu extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -299,6 +314,7 @@ public class FrmMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuListaServico;
     private javax.swing.JMenuItem mnuListarClientes;
     private javax.swing.JMenuItem mnuListarPets;
+    private javax.swing.JMenuItem mnuRegistrarServico;
     private javax.swing.JMenuItem mnuSair;
     private javax.swing.JMenuItem mnuTrocarUsuario;
     // End of variables declaration//GEN-END:variables

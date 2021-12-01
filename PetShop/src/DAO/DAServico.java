@@ -88,6 +88,7 @@ public class DAServico {
             servico.setDescricao(result.getString("ds_servico"));
             servico.setDtCadastro(result.getDate("DT_CADASTRO"));
             servico.setPreco(result.getDouble("nr_preco"));
+            servico.setTempoMedio(result.getDouble("nr_tempo_medio_min"));
             
             // adicionamos o objeto com os dados para nossa lista
             arrServico.add(servico);
@@ -132,7 +133,6 @@ public class DAServico {
     public void registraServico(int idServico, int idPet, int idUsuario, Date dtCadastro) throws Exception
     {
         ResultSet result;
-        Servico servico;
         
         // query a ser executada
         String sQuery = "INSERT INTO TB_SERVICOS_HISTORICO(ID_SERVICO, ID_USUARIO, ID_PET, DT_SERVICO_PRESTADO))";
@@ -144,7 +144,7 @@ public class DAServico {
         psQuery.setInt(1, idServico);
         psQuery.setInt(2, idUsuario);
         psQuery.setInt(3, idPet);
-        psQuery.setDate(4, new java.sql.Date(dtCadastro.getTime()));
+        psQuery.setTimestamp(4, new java.sql.Timestamp(new java.sql.Date(dtCadastro.getTime()).getTime()));
         
         // executamos o comando no banco, para efetivar os dados
         result = psQuery.executeQuery();
@@ -157,10 +157,10 @@ public class DAServico {
         
         // query a ser executada
         String sQuery = " SELECT * FROM tb_servicos_historico h ";
-              sQuery += " inner join tb_servicos s on s.id_servicos = h.id_servico ";
+               sQuery += " inner join tb_servicos s on s.id_servicos = h.id_servico ";
+               sQuery += " inner join tb_pet p on p.id_pet = h.id_pet ";
         
         if (idCliente > 0){
-            sQuery += " inner left tb_pet p on p.id_pet = h.id_pet ";
             sQuery += " where p.id_responsavel = ? ";
         }
         

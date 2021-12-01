@@ -6,8 +6,10 @@
 package telas;
 
 import Models.Cliente;
+import Models.ServicoHistorico;
 import Models.Usuario;
 import RN.RNCliente;
+import RN.RNServico;
 import RN.RNUsuario;
 import java.util.ArrayList;
 import Util.Util;
@@ -295,13 +297,24 @@ public class FrmAdministrar extends javax.swing.JFrame {
         lblDashboard.setText("Dashboard " + Util.dataToString(Calendar.getInstance().getTime()).substring(0, 5));
         RNCliente rnClientes = new RNCliente();
         ArrayList<Cliente> arrCliente = rnClientes.listarTodosUsuarios("");
+        ArrayList<ServicoHistorico> arrServicos = new RNServico().retornaHistoricoServicos(0);
         int iQtdClienteNovo = 0;
+        int iQtdServicoHj = 0;
         
         for (Cliente cliente: arrCliente){
             if (Util.dataToString(cliente.getDtCadastro()).equals(Util.dataToString(Calendar.getInstance().getTime()))){
                 iQtdClienteNovo += 1;
             }
         }
+        
+        for (ServicoHistorico servHistoorico: arrServicos){
+            if (Util.dataToString(servHistoorico.getDtPrestacaoServico()).equals(Util.dataToString(Calendar.getInstance().getTime()))){
+                iQtdServicoHj += 1;
+            }
+        }
+        
+        lblServicos.setText(String.valueOf(arrServicos.size()));
+        lblServicosNovos.setText(String.valueOf(iQtdServicoHj));
         
         DefaultTableModel tblUsuariosModel = null;
         tblUsuariosModel = (DefaultTableModel) tblUsuarios.getModel();
