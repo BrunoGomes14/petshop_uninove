@@ -30,9 +30,6 @@ public class RNProduto {
                 if(preco <0){
                     throw new IllegalArgumentException("Preço inválido!");
                 }
-                if(descProduto.trim().isEmpty()){
-                    throw new IllegalArgumentException("O campo do desconto é obrigatório");
-                }
                 if (qtd <0) {
                     throw new IllegalArgumentException("Quantidade do estoque inválido!");
                 }
@@ -66,9 +63,7 @@ public class RNProduto {
                 if(preco <0){
                     throw new IllegalArgumentException("Preço inválido!");
                 }
-                if(descProduto.trim().isEmpty()){
-                    throw new IllegalArgumentException("O campo do desconto é obrigatório");
-                }
+                
                 if (qtd <0) {
                     throw new IllegalArgumentException("Quantidade do estoque inválido!");
                 }
