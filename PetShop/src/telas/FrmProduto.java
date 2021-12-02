@@ -5,12 +5,15 @@
  */
 package telas;
 
+import Models.Produto;
+import RN.RNProduto;
 /**
  *
  * @author Beatriz
  */
 public class FrmProduto extends javax.swing.JFrame {
-
+    public int idProduto = 0 ;
+    public Produto produto = null;
     /**
      * Creates new form FrmProduto
      */
@@ -20,6 +23,13 @@ public class FrmProduto extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
         setResizable(false);
+        
+        if (idProduto> 0) {
+            txtProduto.setText(produto.getProduto());
+            produto.setPreco(Double.valueOf(txtPreco.getText()));
+            produto.setDescProduto(txtDesconto.getText());
+            produto.setQtdEstoque(Integer.valueOf(txtQtd.getText()));
+        }
     }
 
     /**
@@ -31,7 +41,7 @@ public class FrmProduto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtNome = new javax.swing.JTextField();
+        txtProduto = new javax.swing.JTextField();
         txtDesconto = new javax.swing.JTextField();
         txtPreco = new javax.swing.JTextField();
         txtQtd = new javax.swing.JTextField();
@@ -42,7 +52,6 @@ public class FrmProduto extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
-        lblSair = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,8 +74,6 @@ public class FrmProduto extends javax.swing.JFrame {
 
         btnVoltar.setText("Voltar");
 
-        lblSair.setText("X");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,7 +88,7 @@ public class FrmProduto extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -98,17 +105,13 @@ public class FrmProduto extends javax.swing.JFrame {
                     .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblSair, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(lblSair)
-                .addGap(52, 52, 52)
+                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3))
@@ -132,6 +135,28 @@ public class FrmProduto extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
+        boolean rResultado = false;
+       Produto produto = new Produto();
+       
+       produto.setProduto(txtProduto.getText());
+       produto.setPreco(Double.valueOf(txtPreco.getText()));
+       produto.setDescProduto(txtDesconto.getText());
+       produto.setQtdEstoque(Integer.valueOf(txtQtd.getText()));
+       produto.setId(idProduto);
+      
+       
+       RNProduto rnProduto = new RNProduto();
+       
+       if (idProduto > 0){
+           
+           rResultado = rnProduto.editarProduto(txtProduto.getText(),txtDesconto.getText() ,Integer.valueOf(txtQtd.getText()),Double.valueOf(txtPreco.getText()) );
+        }else {
+           
+           rResultado = rnProduto.inserirProdutos(txtProduto.getText(),txtDesconto.getText() ,Integer.valueOf(txtQtd.getText()),Double.valueOf(txtPreco.getText()));
+        }        
+        
+           if (rResultado)
+           setVisible(false);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
@@ -177,10 +202,9 @@ public class FrmProduto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel lblSair;
     private javax.swing.JTextField txtDesconto;
-    private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPreco;
+    private javax.swing.JTextField txtProduto;
     private javax.swing.JTextField txtQtd;
     // End of variables declaration//GEN-END:variables
 }

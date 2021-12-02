@@ -56,7 +56,7 @@ public class RNProduto {
             
              return rRetorno;             
     }
-     public boolean editarCliente(String produto, String descProduto, int qtd, double preco) {
+     public boolean editarProduto(String produto, String descProduto, int qtd, double preco) {
         boolean rRetorno = false;
         
             try{
