@@ -35,9 +35,9 @@ public class DAProdutos{
         
         // preenchemos os parametros informados na query
         psQuery.setString(1, produto);
-        psQuery.setString(3, descProduto);
-        psQuery.setDouble(4, preco);
-        psQuery.setInt(5, qtd);
+        psQuery.setString(2, descProduto);
+        psQuery.setDouble(3, preco);
+        psQuery.setInt(4, qtd);
         
         // executamos o comando no banco, para efetivar os dados
         psQuery.executeUpdate();
