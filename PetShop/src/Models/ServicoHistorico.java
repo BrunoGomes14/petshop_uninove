@@ -16,8 +16,10 @@ public class ServicoHistorico{
     int idServico;
     int idUsuarioResponsavel;
     int idPet;
+    String cliente;
     Date dtPrestacaoServico;
     String nomeServico;
+    String usuario;
     Pet pet;
 
     public Pet getPet() {
@@ -74,5 +76,21 @@ public class ServicoHistorico{
 
     public void setDtPrestacaoServico(Date dtPrestacaoServico) {
         this.dtPrestacaoServico = dtPrestacaoServico;
+    }
+    
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 }

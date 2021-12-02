@@ -135,7 +135,7 @@ public class DAServico {
         ResultSet result;
         
         // query a ser executada
-        String sQuery = "INSERT INTO TB_SERVICOS_HISTORICO(ID_SERVICO, ID_USUARIO, ID_PET, DT_SERVICO_PRESTADO))";
+        String sQuery = "INSERT INTO TB_SERVICOS_HISTORICO(ID_SERVICO, ID_USUARIO, ID_PET, DT_SERVICO_PRESTADO) values (?, ?, ?, ?)";
     
         // criamos a query para executar no mysql
         psQuery = conn.prepareStatement(sQuery);
@@ -144,10 +144,10 @@ public class DAServico {
         psQuery.setInt(1, idServico);
         psQuery.setInt(2, idUsuario);
         psQuery.setInt(3, idPet);
-        psQuery.setTimestamp(4, new java.sql.Timestamp(new java.sql.Date(dtCadastro.getTime()).getTime()));
+        psQuery.setObject(4, new java.sql.Timestamp(new java.sql.Date(dtCadastro.getTime()).getTime()));
         
         // executamos o comando no banco, para efetivar os dados
-        result = psQuery.executeQuery();
+       psQuery.executeUpdate();
     }
     
     public ArrayList<ServicoHistorico> retornaHistoricoServicos(int idCliente) throws Exception{
@@ -203,4 +203,84 @@ public class DAServico {
         
         return arrServicos;
     }
+    
+     public ArrayList<ServicoHistorico> retornaHistoricoServicos(int idCliente, Date dtInicio, Date dtFim, int idUsuario) throws Exception{
+        ResultSet result;
+        ServicoHistorico servicoHistorico;
+        ArrayList<ServicoHistorico> arrServicos = new ArrayList<>();
+        
+        // query a ser executada
+        String sQuery  = " SELECT * FROM tb_servicos_historico h ";
+               sQuery += " inner join tb_servicos s on s.id_servicos = h.id_servico ";
+               sQuery += " inner join tb_pet p on p.id_pet = h.id_pet ";
+               sQuery += " inner join tb_cliente c on p.id_responsavel = c.id_cliente ";
+               sQuery += " left join tb_usuarios u on u.id_usuario = h.id_usuario ";
+               sQuery += " where date(dt_servico_prestado) between date(?) and date(?) ";
+        
+        if (idCliente > 0){
+            sQuery += " and p.id_responsavel = ? ";
+        }
+        
+        if (idUsuario > 0){
+            sQuery += " and h.id_usuario = ? ";
+        }
+        
+        sQuery += " order by dt_servico_prestado desc ";
+        
+        // criamos a query para executar no mysql
+        psQuery = conn.prepareStatement(sQuery);
+        
+        psQuery.setObject(1, new java.sql.Timestamp(new java.sql.Date(dtInicio.getTime()).getTime()));
+        psQuery.setObject(2, new java.sql.Timestamp(new java.sql.Date(dtFim.getTime()).getTime()));
+        
+        if (idCliente > 0){ 
+            // Define o parametro
+            psQuery.setInt(3, idCliente);
+            
+            if (idUsuario > 0){
+                psQuery.setInt(4, idUsuario);
+            }
+        }
+        else if (idUsuario > 0) {
+            psQuery.setInt(3, idUsuario);
+        }
+        
+        // executamos o comando no banco, para efetivar os dados
+        result = psQuery.executeQuery();
+        
+        // se encontramos dados para ler
+        while (result.next())
+        {
+            // criamos um objeto para guardar os dados do cliente
+            servicoHistorico = new ServicoHistorico();
+            
+            // recuperamos o resultado
+            servicoHistorico.setId(result.getInt("id_historico"));
+            servicoHistorico.setNomeServico(result.getString("nm_servico"));
+            servicoHistorico.setDtPrestacaoServico(result.getTimestamp("dt_servico_prestado"));
+            servicoHistorico.setCliente(result.getString("nm_cliente"));
+            
+            Pet pet = new Pet();
+            if (result.getInt("id_pet") > 0){
+                pet.setId(result.getInt("id_pet"));
+                pet.setNome(result.getString("nm_pet"));
+                pet.setComplemento(result.getString("ds_complemento"));
+                pet.setDtNascimento(result.getDate("dt_nascimento"));
+                pet.setRga(result.getString("ds_rga"));
+                servicoHistorico.setPet(pet);
+            }
+            
+            if (result.getInt("h.id_usuario") > 0){
+                servicoHistorico.setUsuario(result.getString("u.ds_usuario"));
+            }
+            else {
+                servicoHistorico.setUsuario("adm");
+            }
+            
+            arrServicos.add(servicoHistorico);
+        }
+        
+        return arrServicos;
+    }
+     
 }

@@ -11,8 +11,10 @@ import DAO.DAServico;
 import Models.Pet;
 import Models.Servico;
 import Models.ServicoHistorico;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -122,7 +124,7 @@ public class RNServico {
     }
     
     public ArrayList<ServicoHistorico> retornaHistoricoServicos(int idCliente){
-         try{
+        try{
             return new DAServico().retornaHistoricoServicos(idCliente);
         }
         catch (Exception erro) {
@@ -130,5 +132,31 @@ public class RNServico {
         }
         
         return new ArrayList();
+    }
+    
+     public ArrayList<ServicoHistorico> retornaHistoricoServicos(int idCliente, Date dtInicio, Date dtFim, int idUsuario){
+        try{
+            return new DAServico().retornaHistoricoServicos(idCliente, dtInicio, dtFim, idUsuario);
+        }
+        catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro Inesperado!\n\n" + erro.getMessage());
+        }
+        
+        return new ArrayList();
+    }
+    
+    public boolean registraServico(int idServico, int idPet, int idUsuario)
+    {
+        try{
+            
+            new DAServico().registraServico(idServico, idPet, idUsuario, Calendar.getInstance().getTime());
+            JOptionPane.showMessageDialog(null, "Serviço registrado com sucesso!");
+            
+            return true;
+        }
+        catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro Inesperado!\n\n" + erro.getMessage());
+            return false;
+        }
     }
 }

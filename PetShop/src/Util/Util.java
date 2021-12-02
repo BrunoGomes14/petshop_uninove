@@ -21,7 +21,8 @@ public class Util {
     public final static String TIPO_USUARIO_ADMIN = "admin";
     public final static String TIPO_USUARIO_ESTOQUISTA = "estoquista";
     
-    private static SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+    private final static SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+    private final static SimpleDateFormat formatDtHr = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     
     public static boolean dataValida(String data){
         
@@ -55,5 +56,9 @@ public class Util {
     
     public static String dataToString(Date data){
         return format.format(data);
+    }
+    
+    public static String dataHoraToString(Date data){
+        return formatDtHr.format(data);
     }
 }

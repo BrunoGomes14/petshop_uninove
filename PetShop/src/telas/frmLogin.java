@@ -140,7 +140,7 @@ public class FrmLogin extends javax.swing.JFrame {
                     abreTelaAdm();
                     break;
                 case Util.TIPO_USUARIO_ATENDENTE:
-                    abreTelaMenus();
+                    abreTelaMenus(rnUsuario.retornaIdUsuario(txtUsuario.getText()));
                     break;
                 case Util.TIPO_USUARIO_ESTOQUISTA:
                     abreTelaEstoque();
@@ -158,9 +158,11 @@ public class FrmLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }//GEN-LAST:event_formWindowOpened
 
-    private void abreTelaMenus(){
+    private void abreTelaMenus(int idUsuario){
         this.setVisible(false);
-        new FrmMenu().setVisible(true);
+        FrmMenu menu = new FrmMenu();
+        menu.idUsuario = idUsuario;
+        menu.setVisible(true);
     }
     
     private void abreTelaAdm(){

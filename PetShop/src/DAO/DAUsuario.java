@@ -95,7 +95,7 @@ public class DAUsuario {
         ArrayList<Usuario> arrUsuarios = new ArrayList<>(); 
         
         // query a ser executada
-        String sQuery = "SELECT * FROM TB_USUARIOS WHERE DS_CARGO != \"ADM\"";
+        String sQuery = "SELECT * FROM TB_USUARIOS WHERE DS_CARGO != \""+Util.Util.TIPO_USUARIO_ADMIN+"\"";
     
         // criamos a query para executar no mysql
         psQuery = conn.prepareStatement(sQuery);
@@ -159,5 +159,30 @@ public class DAUsuario {
         
         // executamos o comando no banco, para efetivar os dados
         psQuery.executeUpdate();
+    }
+    
+    public int retornaIdUsuario(String usuario) throws Exception {
+        ResultSet result;
+        int idUsuario = 0;
+        
+        // query a ser executada
+        String sQuery = "SELECT ID_USUARIO FROM TB_USUARIOS WHERE DS_USUARIO = ?";
+    
+        // criamos a query para executar no mysql
+        psQuery = conn.prepareStatement(sQuery);
+        
+        // preenchemos os parametros informados na query
+        psQuery.setString(1, usuario);
+        
+        // executamos o comando no banco, para efetivar os dados
+        result = psQuery.executeQuery();
+        
+        // se encontramos dados para ler
+        if (result.next())
+        {
+            idUsuario = result.getInt("ID_USUARIO");
+        }
+        
+        return idUsuario;
     }
 }

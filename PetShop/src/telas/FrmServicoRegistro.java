@@ -5,6 +5,7 @@
  */
 package telas;
 
+import DAO.DAServico;
 import Models.Cliente;
 import Models.Pet;
 import Models.Servico;
@@ -22,13 +23,19 @@ import java.util.ArrayList;
 public class FrmServicoRegistro extends javax.swing.JFrame {
     int idCliente = 0;
     int idPet = 0;
+    int idUsuario = 0;
     ArrayList<Cliente> arrClientes;
+    ArrayList<Servico> arrServico;
+    ArrayList<Pet> arrPet;
     
     /**
      * Creates new form FrmServicoRegistro
+     * @param idUsuario
      */
-    public FrmServicoRegistro() {
+    public FrmServicoRegistro(int idUsuario) {
         initComponents();
+        
+        this.idUsuario = idUsuario;
         
         pack();
         setLocationRelativeTo(null);
@@ -138,10 +145,21 @@ public class FrmServicoRegistro extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
+        int idPet = arrPet.get(cboPets.getSelectedIndex()).getId();
+        int idServico = arrServico.get(cboServicos.getSelectedIndex()).getId();
+        
+        if (new RNServico().registraServico(idServico, idPet, idUsuario)){
+            setVisible(false);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+    
     private void preencheCombo(){
-        for (Servico servico: new RNServico().listarServico()){
+        
+        arrServico = new RNServico().listarServico();
+        
+        for (Servico servico: arrServico){
             cboServicos.addItem(servico.getNome());
         }
         
@@ -158,8 +176,11 @@ public class FrmServicoRegistro extends javax.swing.JFrame {
             i++;
         }
         
-        if (idPet > 0){
-            for (Pet pet: new RNPets().listarPets(idCliente)){
+        if (idCliente > 0){
+         
+            arrPet =  new RNPets().listarPets(idCliente);
+            
+            for (Pet pet: arrPet){
                 cboPets.addItem(pet.getNome());
             }
         }
@@ -171,7 +192,9 @@ public class FrmServicoRegistro extends javax.swing.JFrame {
                 int id = arrClientes.get(cboClientes.getSelectedIndex()).getId();
                 cboPets.removeAllItems();
                 
-                for (Pet pet: new RNPets().listarPets(id)){
+                arrPet = new RNPets().listarPets(id);
+                
+                for (Pet pet: arrPet){
                     cboPets.addItem(pet.getNome());
                 }
             }
@@ -207,7 +230,7 @@ public class FrmServicoRegistro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmServicoRegistro().setVisible(true);
+                new FrmServicoRegistro(0).setVisible(true);
             }
         });
     }

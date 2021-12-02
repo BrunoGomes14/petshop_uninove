@@ -153,4 +153,22 @@ public class RNUsuario {
             DAOMysql.disposeConnection(daUsuario.conn);
         }
     }
+    
+    public int retornaIdUsuario(String sUsuario){
+        int idUsuario = 0;
+        
+        try {
+            daUsuario = new DAUsuario();
+            idUsuario = daUsuario.retornaIdUsuario(sUsuario);
+        } catch (IllegalArgumentException erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro Inesperado!\n\n" + erro.getMessage());
+        } finally {
+            // fechamos a conexão com o banco de dados
+            DAOMysql.disposeConnection(daUsuario.conn);
+        }
+        
+        return idUsuario;
+    }
 }
