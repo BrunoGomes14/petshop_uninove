@@ -257,7 +257,9 @@ public class FrmAdministrar extends javax.swing.JFrame {
     }//GEN-LAST:event_tblUsuariosMouseClicked
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        new FrmCadastroUsuario().setVisible(true);
+        FrmCadastrarUsuario cadastro = new FrmCadastrarUsuario();
+        
+        cadastro.setVisible(true);
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
