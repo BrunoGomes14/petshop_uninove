@@ -9,6 +9,7 @@ import Models.Cliente;
 import RN.RNCliente;
 import Util.Util;
 import java.text.SimpleDateFormat;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -163,6 +164,7 @@ public class FrmCliente extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
         setResizable(false);
+        setIconImage(new ImageIcon("src\\resouces\\icone.png").getImage());
         
         if (idCliente > 0){
             preencheCliente();

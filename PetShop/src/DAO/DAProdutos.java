@@ -79,14 +79,20 @@ public class DAProdutos{
         return result.next();
     }
     
-    public ArrayList<Produto> listarTodosProdutos() throws Exception {
+    public ArrayList<Produto> listarTodosProdutos(String sFiltro) throws Exception {
         ResultSet result;
         Produto produto;
         ArrayList<Produto> arrProduto = new ArrayList<>(); 
         
         // query a ser executada
-        String sQuery = "SELECT * FROM TB_PRODUTOS ORDER BY QTD_ESTOQUE DESC, NM_PRODUTO;";
-    
+        String sQuery = "SELECT * FROM TB_PRODUTOS ";
+        
+        if (sFiltro.trim().length() > 0) {
+            sQuery += " WHERE NM_PRODUTO LIKE \"%" + sFiltro + "%\"";
+        }
+        
+        sQuery += " ORDER BY QTD_ESTOQUE, NM_PRODUTO ";
+        
         // criamos a query para executar no mysql
         psQuery = conn.prepareStatement(sQuery);
         

@@ -53,8 +53,8 @@ public class RNProduto {
             
              return rRetorno;             
     }
-     public boolean editarProduto(String produto, String descProduto, int qtd, double preco) {
-        boolean rRetorno = false;
+     public boolean editarProduto(int idProduto, String produto, String descProduto, int qtd, double preco) {
+        boolean rRetorno = true;
         
             try{
                 if(produto.trim().isEmpty()){
@@ -69,7 +69,7 @@ public class RNProduto {
                 }
                 
                 daProdutos = new DAProdutos();
-                daProdutos.inserirProduto(produto, descProduto, preco, qtd);
+                daProdutos.editarCliente(idProduto, produto, descProduto, preco, qtd);
                 
                 JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
             }
@@ -85,7 +85,7 @@ public class RNProduto {
                   DAOMysql.disposeConnection(daProdutos.conn);
             }
             
-             return rRetorno;             
+            return rRetorno;             
     }  
     public boolean verificarProduto(String produto){
      try {
@@ -107,9 +107,9 @@ public class RNProduto {
 
         return false;
     }
-    public ArrayList<Produto> listarTodos(){
+    public ArrayList<Produto> listarTodos(String sFiltro){
         try{
-            return new DAProdutos().listarTodosProdutos();
+            return new DAProdutos().listarTodosProdutos(sFiltro);
         }
         catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro Inesperado!\n\n" + erro.getMessage());

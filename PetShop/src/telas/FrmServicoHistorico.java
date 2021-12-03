@@ -15,6 +15,7 @@ import Util.Util;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -38,6 +39,7 @@ public class FrmServicoHistorico extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
         setResizable(false);
+        setIconImage(new ImageIcon("src\\resouces\\icone.png").getImage());
     }
 
     /**
@@ -63,6 +65,7 @@ public class FrmServicoHistorico extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Histórico de serviços");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -172,7 +175,6 @@ public class FrmServicoHistorico extends javax.swing.JFrame {
                         .addComponent(txtDtDe, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
                         .addGap(1, 1, 1))
                     .addComponent(cboClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)

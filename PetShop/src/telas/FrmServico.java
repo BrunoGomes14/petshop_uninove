@@ -7,6 +7,7 @@ package telas;
 
 import Models.Servico;
 import RN.RNServico;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -46,6 +47,7 @@ public class FrmServico extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro de serviços");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -132,6 +134,7 @@ public class FrmServico extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
         setResizable(false);
+        setIconImage(new ImageIcon("src\\resouces\\icone.png").getImage());
         
         if (idServico > 0) {
             txtNome.setText(servico.getNome());

@@ -8,6 +8,7 @@ package telas;
 import Models.Servico;
 import RN.RNServico;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,6 +25,7 @@ public class FrmServicoLista extends javax.swing.JFrame {
      */
     public FrmServicoLista() {
         initComponents();
+        setIconImage(new ImageIcon("src\\resouces\\icone.png").getImage());
         carregaLista();
     }
 
@@ -42,6 +44,7 @@ public class FrmServicoLista extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Serviços");
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 formWindowGainedFocus(evt);

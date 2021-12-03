@@ -15,6 +15,7 @@ import RN.RNServico;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -40,6 +41,7 @@ public class FrmServicoRegistro extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
         setResizable(false);
+        setIconImage(new ImageIcon("src\\resouces\\icone.png").getImage());
         
         preencheCombo();
     }
@@ -64,6 +66,7 @@ public class FrmServicoRegistro extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Registro de serviço");
 
         jLabel1.setText("Serviço");
 

@@ -157,8 +157,6 @@ public class DAServico {
         
         // query a ser executada
         String sQuery = " SELECT * FROM tb_servicos_historico h ";
-               sQuery += " inner join tb_servicos s on s.id_servicos = h.id_servico ";
-               sQuery += " inner join tb_pet p on p.id_pet = h.id_pet ";
         
         if (idCliente > 0){
             sQuery += " where p.id_responsavel = ? ";
@@ -175,28 +173,17 @@ public class DAServico {
         // executamos o comando no banco, para efetivar os dados
         result = psQuery.executeQuery();
         
-        // criamos um objeto para guardar os dados do cliente
-        servicoHistorico = new ServicoHistorico();
+
         
         // se encontramos dados para ler
-        if (result.next())
+        while (result.next())
         {
+            // criamos um objeto para guardar os dados do cliente
+            servicoHistorico = new ServicoHistorico();
+            
             // recuperamos o resultado
             servicoHistorico.setId(result.getInt("id_historico"));
-            servicoHistorico.setNomeServico(result.getString("nm_servico"));
             servicoHistorico.setDtPrestacaoServico(result.getDate("dt_servico_prestado"));
-            
-            Pet pet = new Pet();
-            
-            if (result.getInt("id_pet") > 0){
-                pet.setId(result.getInt("id_pet"));
-                pet.setNome(result.getString("nm_pet"));
-                pet.setComplemento(result.getString("ds_complemento"));
-                pet.setDtNascimento(result.getDate("dt_nascimento"));
-                pet.setRga(result.getString("ds_rga"));
-                
-                servicoHistorico.setPet(pet);
-            }
             
             arrServicos.add(servicoHistorico);
         }

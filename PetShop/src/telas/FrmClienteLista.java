@@ -11,6 +11,7 @@ import static java.lang.System.in;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import Util.Util;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -139,6 +140,7 @@ public class FrmClienteLista extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
         setResizable(false);
+        setIconImage(new ImageIcon("src\\resouces\\icone.png").getImage());
 
         preencheClientes();
     }//GEN-LAST:event_formWindowOpened

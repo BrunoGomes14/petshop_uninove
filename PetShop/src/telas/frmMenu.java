@@ -6,6 +6,7 @@
 package telas;
 
 import java.awt.event.WindowEvent;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -14,6 +15,7 @@ import java.awt.event.WindowEvent;
 public class FrmMenu extends javax.swing.JFrame {
 
     public static int idUsuario = 0;
+    public static String nmUsuario = "";
     
     /**
      * Creates new form frmMenu
@@ -32,6 +34,7 @@ public class FrmMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        lblUsuario = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -55,25 +58,23 @@ public class FrmMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Inicial");
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resouces/ifollow.gif"))); // NOI18N
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        lblUsuario.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(0, 0, 0));
+        lblUsuario.setText("Bem-Vindo(a) usuário");
+        jPanel1.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 270, 60));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resouces/ifollow.gif"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 351));
 
         jMenu1.setText("Pets");
 
@@ -173,7 +174,7 @@ public class FrmMenu extends javax.swing.JFrame {
 
         jMenu5.setText("Produtos");
 
-        mnuCadastroProduto.setText("CadastrarProduto");
+        mnuCadastroProduto.setText("Cadastrar Produto");
         mnuCadastroProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuCadastroProdutoActionPerformed(evt);
@@ -181,7 +182,7 @@ public class FrmMenu extends javax.swing.JFrame {
         });
         jMenu5.add(mnuCadastroProduto);
 
-        jMenuItem2.setText("Listar Produto");
+        jMenuItem2.setText("Listar Produtos");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -231,6 +232,7 @@ public class FrmMenu extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+        setIconImage(new ImageIcon("src\\resouces\\icone.png").getImage());
     }//GEN-LAST:event_formWindowOpened
 
     private void mnuListarPetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuListarPetsActionPerformed
@@ -300,6 +302,17 @@ public class FrmMenu extends javax.swing.JFrame {
         new FrmProdutoLista().setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        
+        if (nmUsuario.length() > 0){     
+            lblUsuario.setVisible(false);
+            lblUsuario.setText("Bem-vindo(a) " + nmUsuario);   
+        }
+        else {
+            lblUsuario.setVisible(false);
+        }
+    }//GEN-LAST:event_formWindowActivated
+
     /**
      * @param args the command line arguments
      */
@@ -349,6 +362,7 @@ public class FrmMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblUsuario;
     private javax.swing.JMenuItem mnuCadastrarClientes;
     private javax.swing.JMenuItem mnuCadastrarPets;
     private javax.swing.JMenuItem mnuCadastroProduto;

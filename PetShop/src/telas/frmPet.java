@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import Util.Util;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -30,6 +31,7 @@ public class FrmPet extends javax.swing.JFrame {
      */
     public FrmPet() {
         initComponents();
+        setIconImage(new ImageIcon("src\\resouces\\icone.png").getImage());
     }
 
     /**

@@ -6,6 +6,7 @@
 package telas;
 
 import RN.RNUsuario;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -22,6 +23,7 @@ public class FrmCadastrarUsuario extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
         setResizable(false);
+        setIconImage(new ImageIcon("src\\resouces\\icone.png").getImage());
     }
 
     /**
@@ -51,6 +53,7 @@ public class FrmCadastrarUsuario extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de usuário");
 
         jLabel1.setText("Tipo de usuário");
 

@@ -12,6 +12,7 @@ import RN.RNPets;
 import Util.Util;
 import java.util.ArrayList;
 import java.util.HashSet;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -33,6 +34,7 @@ public class FrmPetLista extends javax.swing.JFrame {
      */
     public FrmPetLista() {
         initComponents();
+        setIconImage(new ImageIcon("src\\resouces\\icone.png").getImage());
     }
 
     /**
